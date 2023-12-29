@@ -3,9 +3,9 @@ import * as z from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useState } from "react";
 import { useMutation } from "@tanstack/react-query";
-import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/components/ui/use-toast";
+import Axios from "@/utlis/axios";
 
 const formSchema = z.object({
   name: z
@@ -36,7 +36,7 @@ const useSignup = () => {
   const { toast } = useToast();
 
   const mutationFn = (data: z.infer<typeof formSchema>) => {
-    return axios({
+    return Axios({
       method: "POST",
       data,
       url: "https://fakestoreapi.com/products",
