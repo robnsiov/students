@@ -20,7 +20,7 @@ const Auth = () => {
       <div className="w-full min-h-screen flex justify-center items-center flex-col p-4 relative">
         <Tabs
           defaultValue="sign-up"
-          className="w-[400px] sm:w-fullrelative z-10"
+          className="w-[400px] sm:w-full relative z-10"
         >
           <TabsList className="grid w-full grid-cols-2">
             <TabsTrigger value="sign-up">Sign up</TabsTrigger>
