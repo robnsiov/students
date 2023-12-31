@@ -12,9 +12,11 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import Signup from "./sign-up";
+import Loading from "@/components/shared/loading";
 const Auth = () => {
   return (
     <>
+      <Loading show={!true} />
       <div className="w-full min-h-screen flex justify-center items-center flex-col p-4 relative">
         <Tabs
           defaultValue="sign-up"

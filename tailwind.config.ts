@@ -28,6 +28,10 @@ const config = {
       "1362px": { max: "1362px" },
     },
     extend: {
+      boxShadow: {
+        myShadow1: "4.1px -5px 0 0 #fff",
+        myShadow2: "-4.1px -5px 0 0 #fff",
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
