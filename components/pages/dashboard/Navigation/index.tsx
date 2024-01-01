@@ -1,13 +1,10 @@
-import { Eye } from "lucide-react";
+import { CheckCircle, Eye, LogOut } from "lucide-react";
 import React, { useState } from "react";
 
 const Navigation = () => {
   const Menus = [
-    { name: "Tasks", icon: "home-outline", dis: "translate-x-0" },
-    { name: "Todos", icon: "person-outline", dis: "translate-x-16" },
-    { name: "Logs", icon: "chatbubble-outline", dis: "translate-x-32" },
-    { name: "Logout", icon: "camera-outline", dis: "translate-x-48" },
-    { name: "Settings", icon: "settings-outline", dis: "translate-x-64" },
+    { name: "Tasks", Icon: <CheckCircle />, dis: "translate-x-0" },
+    { name: "Logout", Icon: <LogOut />, dis: "translate-x-16" },
   ];
   const [active, setActive] = useState(0);
   return (
@@ -38,7 +35,7 @@ const Navigation = () => {
                     i === active && "-mt-6 !text-white"
                   }`}
                 >
-                  <Eye />
+                  {menu.Icon}
                 </span>
                 <span
                   className={` text-sm  text-slate-500 ${
