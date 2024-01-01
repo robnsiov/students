@@ -1,7 +1,6 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import Navigation from "./Navigation";
 import { Minus, Plus } from "lucide-react";
 
 const Dashboard = () => {
@@ -181,7 +180,6 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-        <Navigation />
       </div>
     </>
   );
