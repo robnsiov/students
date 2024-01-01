@@ -82,6 +82,7 @@ const Dashboard = () => {
                   </div>
                 </div>
               </div>
+              <div className="w-full my-3 h-[1px] border-dashed border-[1px] border-slate-700 hidden sm:inline-block"></div>
               <div className="flex justify-start items-center flex-wrap mt-3">
                 <span className="mr-4 mb-2">Exercise books</span>
                 <div className="mr-4 flex justify-start items-center flex-wrap">
@@ -107,7 +108,7 @@ const Dashboard = () => {
                   </div>
                 </div>
               </div>
-
+              <div className="w-full my-3 h-[1px] border-dashed border-[1px] border-slate-700 hidden sm:inline-block"></div>
               <div className="flex justify-start items-center flex-wrap mt-3">
                 <span className="mr-4 mb-2">Fine</span>
                 <div className="mr-4 flex justify-start items-center flex-wrap">
@@ -133,6 +134,7 @@ const Dashboard = () => {
                   </div>
                 </div>
               </div>
+              <div className="w-full my-3 h-[1px] border-dashed border-[1px] border-slate-700 hidden sm:inline-block"></div>
               <div className="flex justify-start items-center flex-wrap mt-3">
                 <span className="mr-4 mb-2">Written Penlaty</span>
                 <div className="mr-4 flex justify-start items-center flex-wrap">
@@ -158,6 +160,7 @@ const Dashboard = () => {
                   </div>
                 </div>
               </div>
+              <div className="w-full my-3 h-[1px] border-dashed border-[1px] border-slate-700 hidden sm:inline-block"></div>
               <div className="flex justify-start items-center flex-wrap mt-3">
                 <span className="mr-4 mb-2">Books</span>
                 <div className="flex justify-start items-center flex-wrap">
