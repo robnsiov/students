@@ -2,8 +2,26 @@
 
 import { Button } from "@/components/ui/button";
 import { Minus, Plus } from "lucide-react";
+import Discussion from "./discussion";
+import useDashboard from "./use";
+import ExerciseBooks from "./excercise-books";
+import Fine from "./fine";
+import Penalty from "./penalty";
+import Books from "./books";
 
 const Dashboard = () => {
+  const {
+    discussion,
+    setDiscussion,
+    exerciseBooks,
+    setExerciseBooks,
+    fine,
+    setFine,
+    penalty,
+    setPenalty,
+    books,
+    setBooks,
+  } = useDashboard();
   return (
     <>
       <div className="w-full min-h-screen flex justify-start items-center #fff flex-col">
@@ -58,125 +76,20 @@ const Dashboard = () => {
               </div>
             </div>
             <div className="flex justify-start items-start flex-col">
-              <div className="flex justify-start items-center flex-wrap">
-                <span className="mr-4 mb-2">Discussion</span>
-                <div className="mb-2 mr-4 flex justify-center items-center">
-                  <Button variant="default" className="mr-2">
-                    I did
-                  </Button>
-                  <Button variant="default">I didn{"'"}t</Button>
-                </div>
-                <div className="flex justify-start items-center flex-wrap">
-                  <code className="mr-2 mb-2">delay :</code>
-                  <div className="mb-2 flex justify-center items-center flex-wrap">
-                    <Button variant="outline" size="icon">
-                      <Plus className="h-4 w-4" />
-                    </Button>
-                    <Button variant="outline" className="w-10 mx-2" size="icon">
-                      42
-                    </Button>
-                    <Button variant="outline" size="icon">
-                      <Minus className="h-4 w-4" />
-                    </Button>
-                  </div>
-                </div>
-              </div>
+              <Discussion state={discussion} setState={setDiscussion} />
               <div className="w-full my-3 h-[1px] border-dashed border-[1px] border-slate-700 hidden sm:inline-block"></div>
-              <div className="flex justify-start items-center flex-wrap mt-3">
-                <span className="mr-4 mb-2">Exercise books</span>
-                <div className="mr-4 flex justify-start items-center flex-wrap">
-                  <Button variant="default" className="mr-2 mb-2">
-                    They{"'"}re with me
-                  </Button>
-                  <Button className="mb-2" variant="default">
-                    They aren{"'"}t with me
-                  </Button>
-                </div>
-                <div className="flex justify-start items-center flex-wrap">
-                  <code className="mb-2 mr-2">not done :</code>
-                  <div className="mb-2 flex justify-center items-center flex-wrap">
-                    <Button variant="outline" size="icon">
-                      <Plus className="h-4 w-4" />
-                    </Button>
-                    <Button variant="outline" className="w-10 mx-2" size="icon">
-                      42
-                    </Button>
-                    <Button variant="outline" size="icon">
-                      <Minus className="h-4 w-4" />
-                    </Button>
-                  </div>
-                </div>
-              </div>
+              <ExerciseBooks
+                state={exerciseBooks}
+                setState={setExerciseBooks}
+              />
+
               <div className="w-full my-3 h-[1px] border-dashed border-[1px] border-slate-700 hidden sm:inline-block"></div>
-              <div className="flex justify-start items-center flex-wrap mt-3">
-                <span className="mr-4 mb-2">Fine</span>
-                <div className="mr-4 flex justify-start items-center flex-wrap">
-                  <Button variant="default" className="mr-2 mb-2">
-                    I did{"'"}nt have
-                  </Button>
-                  <Button className="mb-2" variant="default">
-                    I had
-                  </Button>
-                </div>
-                <div className="flex justify-start items-center flex-wrap">
-                  <code className="mr-2 mb-2">remains(Toman) :</code>
-                  <div className="flex justify-center items-center flex-wrap mb-2">
-                    <Button variant="outline" size="icon">
-                      <Plus className="h-4 w-4" />
-                    </Button>
-                    <Button variant="outline" className="w-10 mx-2" size="icon">
-                      42
-                    </Button>
-                    <Button variant="outline" size="icon">
-                      <Minus className="h-4 w-4" />
-                    </Button>
-                  </div>
-                </div>
-              </div>
+              <Fine state={fine} setState={setFine} />
+
               <div className="w-full my-3 h-[1px] border-dashed border-[1px] border-slate-700 hidden sm:inline-block"></div>
-              <div className="flex justify-start items-center flex-wrap mt-3">
-                <span className="mr-4 mb-2">Written Penlaty</span>
-                <div className="mr-4 flex justify-start items-center flex-wrap">
-                  <Button variant="default" className="mr-2 mb-2">
-                    I did{"'"}nt have
-                  </Button>
-                  <Button className="mb-2" variant="default">
-                    I had
-                  </Button>
-                </div>
-                <div className="flex justify-start items-center flex-wrap">
-                  <code className="mr-2 mb-2">remains(sentences) :</code>
-                  <div className="flex justify-center items-center flex-wrap">
-                    <Button variant="outline" size="icon">
-                      <Plus className="h-4 w-4" />
-                    </Button>
-                    <Button variant="outline" className="w-10 mx-2" size="icon">
-                      42
-                    </Button>
-                    <Button variant="outline" size="icon">
-                      <Minus className="h-4 w-4" />
-                    </Button>
-                  </div>
-                </div>
-              </div>
+              <Penalty state={penalty} setState={setPenalty} />
               <div className="w-full my-3 h-[1px] border-dashed border-[1px] border-slate-700 hidden sm:inline-block"></div>
-              <div className="flex justify-start items-center flex-wrap mt-3">
-                <span className="mr-4 mb-2">Books</span>
-                <div className="flex justify-start items-center flex-wrap">
-                  <code className="mr-2 mb-2">not with me :</code>
-                  <div className="flex justify-center items-center flex-wrap">
-                    <Button variant="outline" size="icon">
-                      <Plus className="h-4 w-4" />
-                    </Button>
-                    <Button variant="outline" className="w-10 mx-2" size="icon">
-                      42
-                    </Button>
-                    <Button variant="outline" size="icon">
-                      <Minus className="h-4 w-4" />
-                    </Button>
-                  </div>
-                </div>
-              </div>
+              <Books state={books} setState={setBooks} />
             </div>
           </div>
         </div>
