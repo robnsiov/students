@@ -8,6 +8,16 @@ import ExerciseBooks from "./excercise-books";
 import Fine from "./fine";
 import Penalty from "./penalty";
 import Books from "./books";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 
 const Dashboard = () => {
   const {
@@ -21,9 +31,55 @@ const Dashboard = () => {
     setPenalty,
     books,
     setBooks,
+    onSubmit,
+    onCancelDialog,
+    onContinueDialog,
+    openDialog,
+    setOpenDialog,
   } = useDashboard();
   return (
     <>
+      <AlertDialog open={openDialog} onOpenChange={setOpenDialog}>
+        <AlertDialogContent className="sm:w-[calc(100%-20px)]">
+          <AlertDialogHeader>
+            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+            <AlertDialogDescription>
+              Read the below summery and if was correct, click on Continue else
+              click on Cancel to edit the tasks.
+            </AlertDialogDescription>
+            <code>
+              <p>
+                Discussion: {discussion.task} , delay : {discussion.delay}{" "}
+                minute(s)
+              </p>
+              <p>
+                Exercise books: {exerciseBooks.task} , not done :{" "}
+                {exerciseBooks.remains}
+              </p>
+              <p>
+                Fine : {fine.task} , remains : {fine.remains}
+              </p>
+              <p>
+                Penalty : {penalty.task} , not done : {penalty.remains}
+              </p>
+              <p>
+                Books: not done : {books.notDone} , not with me :{" "}
+                {books.notWithMe}
+              </p>
+            </code>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <Button
+              variant="outline"
+              onClick={onCancelDialog}
+              className="mt-0 mr-3"
+            >
+              Cancel
+            </Button>
+            <Button onClick={onContinueDialog}>Continue</Button>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
       <div className="w-full min-h-screen flex justify-start items-center #fff flex-col">
         <div className="fixed inset-x-0 top-0 border-b-[1px] border-black/10">
           <div className="container mx-auto">
@@ -90,6 +146,10 @@ const Dashboard = () => {
               <Penalty state={penalty} setState={setPenalty} />
               <div className="w-full my-3 h-[1px] border-dashed border-[1px] border-slate-700 hidden sm:inline-block"></div>
               <Books state={books} setState={setBooks} />
+
+              <Button onClick={onSubmit} className="mt-8">
+                submit
+              </Button>
             </div>
           </div>
         </div>
