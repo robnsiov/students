@@ -1,9 +1,9 @@
+import DashboardContainer from "@/components/containers/dashboard";
 import Navigation from "@/components/pages/dashboard/Navigation";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
-      <Navigation />
       <div className="fixed inset-x-0 top-0 border-b-[1px] border-black/10">
         <div className="container mx-auto">
           <div className="py-4 sm:py-2 text-nowrap truncate">
@@ -12,7 +12,8 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
           </div>
         </div>
       </div>
-      {children}
+      <DashboardContainer>{children}</DashboardContainer>
+      <Navigation />
     </>
   );
 };

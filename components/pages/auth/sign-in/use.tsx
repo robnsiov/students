@@ -6,15 +6,10 @@ import { useMutation } from "@tanstack/react-query";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/components/ui/use-toast";
 import Axios from "@/utlis/axios";
-import { useRecoilState } from "recoil";
 import authState from "@/context/auth-state";
+import { useRecoilState } from "recoil";
 
 const formSchema = z.object({
-  name: z
-    .string()
-    .min(4)
-    .max(200)
-    .regex(/^[a-zA-Z\s]+$/, "Only English letters are allowed"),
   phone: z
     .string()
     .length(11)
@@ -30,7 +25,6 @@ const useSignup = () => {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      name: "",
       password: "",
       phone: "",
     },
@@ -42,18 +36,18 @@ const useSignup = () => {
     return Axios<{ result: { token: string } }>({
       method: "POST",
       data,
-      url: "/auth/sign-up",
+      url: "/auth/sign-in",
     });
   };
   const mutation = useMutation({
-    mutationKey: ["sign-up"],
+    mutationKey: ["sign-in"],
     mutationFn: (data: z.infer<typeof formSchema>) => mutationFn(data),
     onError() {
       setHasSubmited(false);
       toast({
         title: "Uh oh! Something went wrong.",
-        description: "Try another phone.",
-        style: { width: "max-content", minWidth: "240px" },
+        description: "Password or phone is incorrect.",
+        style: { width: "max-content", minWidth: "280px" },
         duration: 3000,
       });
     },
@@ -66,7 +60,7 @@ const useSignup = () => {
       localStorage.setItem("token", token);
       toast({
         title: "Successful!",
-        description: "Sign up was successful",
+        description: "Sign in was successful",
         style: { width: "max-content", minWidth: "240px" },
         duration: 3000,
       });

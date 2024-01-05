@@ -1,6 +1,8 @@
+import authState from "@/context/auth-state";
 import { CheckCircle, KanbanSquare, LogOut } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { useRecoilState } from "recoil";
 
 const menus = [
   {
@@ -27,8 +29,10 @@ const useNavigation = () => {
   const router = useRouter();
 
   const pathname = usePathname();
-
   const logout = params.get("logout");
+
+  const [_, setAuthState] = useRecoilState(authState);
+
   const [active, setActive] = useState(
     menus.findIndex(({ href }) => href === pathname)
   );
@@ -45,7 +49,10 @@ const useNavigation = () => {
     router.push("/dashboard");
   };
   const onContinueDialog = () => {
-    // do something
+    setTimeout(() => {
+      localStorage.removeItem("token");
+      setAuthState("unAuthenticated");
+    }, 1000);
     router.replace("/");
   };
 

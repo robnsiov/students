@@ -1,8 +1,11 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import { CardDescription, CardTitle, CardContent } from "@/components/ui/card";
 import Link from "next/link";
+import useHome from "./use";
 
 const Home = () => {
+  const { letsGoLink } = useHome();
   return (
     <>
       <div className="w-full h-screen flex justify-center items-center flex-col relative">
@@ -43,7 +46,7 @@ const Home = () => {
               </CardTitle>
             </div>
           </div>
-          <Link className="mt-20" href={"/login"}>
+          <Link className="mt-20" href={letsGoLink}>
             <Button variant="default">Let{"'"}s Go</Button>
           </Link>
         </div>

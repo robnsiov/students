@@ -2,14 +2,22 @@
 import { Toaster } from "@/components/ui/toaster";
 import ReactQueryContainer from "../react-query";
 import RootContainerImpl from "./types";
+import RecoilContainer from "../recoil";
+import AuthContainer from "../auth";
+import useRootContainer from "./use";
 
 const RootContainer = ({ children }: RootContainerImpl) => {
+  const {} = useRootContainer();
   return (
     <>
-      <ReactQueryContainer>
-        {children}
-        <Toaster />
-      </ReactQueryContainer>
+      <RecoilContainer>
+        <ReactQueryContainer>
+          <AuthContainer>
+            <div className="">{children}</div>
+            <Toaster />
+          </AuthContainer>
+        </ReactQueryContainer>
+      </RecoilContainer>
     </>
   );
 };
