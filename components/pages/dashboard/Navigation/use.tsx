@@ -1,4 +1,4 @@
-import { CheckCircle, LogOut } from "lucide-react";
+import { CheckCircle, KanbanSquare, LogOut } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 
@@ -10,9 +10,15 @@ const menus = [
     href: "/dashboard",
   },
   {
+    name: "History",
+    Icon: <KanbanSquare />,
+    dis: "translate-x-16",
+    href: "/dashboard/history",
+  },
+  {
     name: "Logout",
     Icon: <LogOut />,
-    dis: "translate-x-16",
+    dis: "translate-x-32",
     href: "/dashboard?logout=true",
   },
 ];
@@ -20,8 +26,12 @@ const useNavigation = () => {
   const params = useSearchParams();
   const router = useRouter();
 
+  const pathname = usePathname();
+
   const logout = params.get("logout");
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState(
+    menus.findIndex(({ href }) => href === pathname)
+  );
   const [openDialog, setOpenDialog] = useState(false);
 
   useEffect(() => {

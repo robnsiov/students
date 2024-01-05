@@ -30,11 +30,11 @@ const Home = () => {
         <div className="w-full h-full flex justify-center items-center flex-col p-8 md:p-1 text-center relative z-10">
           <div className="relative">
             <CardTitle
-              className="text-[120px] xl:text-[90px] lg:text-[70px] 
-          font-black relative md:flex md:flex-col md:justify-center md:items-center md:text-[17vw]
+              className="text-[160px] xl:text-[90px] lg:text-[70px] 
+          font-black relative md:flex md:flex-col md:justify-center md:items-center md:text-[20vw]
           md:leading-[1]"
             >
-              <span>English</span> <span>Classroom</span>
+              <span>English</span> <span>Class</span>
             </CardTitle>
             <div className="-mt-6 md:mt-4 flex justify-end items-center">
               <CardDescription className="text-[10px] mr-2">By</CardDescription>

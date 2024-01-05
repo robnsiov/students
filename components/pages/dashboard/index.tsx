@@ -80,15 +80,7 @@ const Dashboard = () => {
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
-      <div className="w-full min-h-screen flex justify-start items-center #fff flex-col">
-        <div className="fixed inset-x-0 top-0 border-b-[1px] border-black/10">
-          <div className="container mx-auto">
-            <div className="flex justify-start items-center py-4 sm:py-2">
-              <span className="sm:text-sm">Welcome</span>{" "}
-              <h3 className="ml-2  font-semibold">Mr Zollfaghari</h3>
-            </div>
-          </div>
-        </div>
+      <div className="w-full min-h-screen flex justify-start items-center  flex-col">
         <div className="sm:mt-[40px] mt-[57px] w-full mb-[150px]">
           <div className="container mx-auto py-4">
             <div className="w-full flex justify-end md:justify-center sm:scale-75 items-center">
