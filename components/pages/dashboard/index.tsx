@@ -1,7 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
-import { Minus, Plus } from "lucide-react";
+import { Loader2, Minus, Plus } from "lucide-react";
 import Discussion from "./discussion";
 import useDashboard from "./use";
 import ExerciseBooks from "./excercise-books";
@@ -36,6 +36,8 @@ const Dashboard = () => {
     onContinueDialog,
     openDialog,
     setOpenDialog,
+    formLoading,
+    taskConfirmationErr,
   } = useDashboard();
   return (
     <>
@@ -76,12 +78,39 @@ const Dashboard = () => {
             >
               Cancel
             </Button>
-            <Button onClick={onContinueDialog}>Continue</Button>
+            <Button disabled={formLoading} onClick={onContinueDialog}>
+              {formLoading && (
+                <>
+                  <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                  Please wait
+                </>
+              )}
+              {!formLoading && "Continue"}
+            </Button>
           </AlertDialogFooter>
         </AlertDialogContent>
       </AlertDialog>
       <div className="w-full min-h-screen flex justify-start items-center  flex-col">
-        <div className="sm:mt-[40px] mt-[57px] w-full mb-[150px]">
+        <div className="sm:mt-[40px] mt-[57px] w-full mb-[150px] relative">
+          {taskConfirmationErr !== "You can set some task." && (
+            <div className="bg-white/20 backdrop-blur absolute inset-0 z-20 flex justify-center items-center text-center p-5">
+              <div className="w-full max-w-sm font-semibold relative sm:bottom-[100px]">
+                {taskConfirmationErr === `You can't set a task today.` && (
+                  <span>
+                    You can{"'"}t set a task today because you can only add
+                    tasks on Sundays, Tuesdays and Thursdays
+                  </span>
+                )}
+                {taskConfirmationErr === `You've set a task today.` && (
+                  <span>
+                    You can{"'"}t set a new task today because you are only
+                    allowed to set one task today
+                  </span>
+                )}
+              </div>
+            </div>
+          )}
+
           <div className="container mx-auto py-4">
             <div className="w-full flex justify-end md:justify-center sm:scale-75 items-center">
               <div

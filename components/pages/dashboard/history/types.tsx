@@ -6,8 +6,8 @@ type ClassesStateImpl = Array<{
 }>;
 
 interface TaskImpl {
-  _id: String;
-  createdAt: Date;
+  _id?: String;
+  createdAt?: Date;
   discussion: {
     res: String;
     delay: Number;
