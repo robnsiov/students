@@ -61,13 +61,14 @@ const useHistory = () => {
         });
     });
     data.data.result.forEach((item, i) => {
+      if (!item.createdAt) return;
       const dt = new Date(item.createdAt).toDateString();
       const index = sessions.findIndex(({ date }) => {
-        date.toDateString() === dt;
+        return date.toDateString() === dt;
       });
       if (index !== -1) {
-        sessions[i].done = "done";
-        sessions[i].data = item;
+        sessions[index].done = "done";
+        sessions[index].data = item;
       }
     });
     setClasses(sessions);

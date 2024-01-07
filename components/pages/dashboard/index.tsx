@@ -1,7 +1,8 @@
 "use client";
 
+import Countdown from "react-countdown";
 import { Button } from "@/components/ui/button";
-import { Loader2, Minus, Plus } from "lucide-react";
+import { Loader2 } from "lucide-react";
 import Discussion from "./discussion";
 import useDashboard from "./use";
 import ExerciseBooks from "./excercise-books";
@@ -10,8 +11,6 @@ import Penalty from "./penalty";
 import Books from "./books";
 import {
   AlertDialog,
-  AlertDialogAction,
-  AlertDialogCancel,
   AlertDialogContent,
   AlertDialogDescription,
   AlertDialogFooter,
@@ -38,7 +37,51 @@ const Dashboard = () => {
     setOpenDialog,
     formLoading,
     taskConfirmationErr,
+    time,
+    timer,
+    refetch,
   } = useDashboard();
+
+  const renderer = ({
+    hours,
+    minutes,
+    seconds,
+    completed,
+  }: {
+    hours: number;
+    minutes: number;
+    seconds: number;
+    completed: boolean;
+  }) => {
+    if (hours === 0 && seconds === 0 && minutes === 0) {
+      refetch();
+    }
+    return (
+      <>
+        <div className="flex justify-start items-center flex-col">
+          <div className=" flex justify-start items-center">
+            <span className="text-2xl">{hours}</span>{" "}
+          </div>
+          <span className="text-zinc-400 text-[8px] mt-3">HOURS</span>
+        </div>
+        <div className="mx-5 text-xl text-zinc-500 relative -top-3.5">:</div>
+        <div className="flex justify-start items-center flex-col">
+          <div className=" flex justify-start items-center">
+            <span className="text-2xl">{minutes}</span>{" "}
+          </div>
+          <span className="text-zinc-400 text-[8px] mt-3">MINUTES</span>
+        </div>
+        <div className="mx-5 text-xl text-zinc-500 relative -top-3.5">:</div>
+        <div className="flex justify-start items-center flex-col">
+          <div className=" flex justify-start items-center">
+            <span className="text-2xl">{seconds}</span>{" "}
+          </div>
+          <span className="text-zinc-400 text-[8px] mt-3">SECONDS</span>
+        </div>
+      </>
+    );
+  };
+
   return (
     <>
       <AlertDialog open={openDialog} onOpenChange={setOpenDialog}>
@@ -112,46 +155,32 @@ const Dashboard = () => {
           )}
 
           <div className="container mx-auto py-4">
-            <div className="w-full flex justify-end md:justify-center sm:scale-75 items-center">
-              <div
-                className="bg-black text-white inline-flex justify-start
+            {time && (
+              <div className="w-full flex justify-end md:justify-center sm:scale-75 items-center">
+                <div
+                  className="bg-black text-white inline-flex justify-start
              items-center uppercase py-4 px-7 text-center rounded-md mb-4 md:mb-7 sm:mb-8"
-              >
-                <div className="flex justify-start items-center flex-col">
-                  <div className=" flex justify-start items-center">
-                    <span className="text-2xl">FR</span>{" "}
+                >
+                  <div className="flex justify-start items-center flex-col">
+                    <div className=" flex justify-start items-center">
+                      <span className="text-2xl">
+                        {new Date(time.current).toLocaleString("en-us", {
+                          weekday: "short",
+                        })}
+                      </span>{" "}
+                    </div>
+                    <span className="text-zinc-400 text-[8px] mt-3">Day</span>
                   </div>
-                  <span className="text-zinc-400 text-[8px] mt-3">Day</span>
-                </div>
-                <div className="mx-5 text-xl text-zinc-500 relative -top-3.5">
-                  :
-                </div>
-                <div className="flex justify-start items-center flex-col">
-                  <div className=" flex justify-start items-center">
-                    <span className="text-2xl">10</span>{" "}
+                  <div className="mx-5 text-xl text-zinc-500 relative -top-3.5">
+                    :
                   </div>
-                  <span className="text-zinc-400 text-[8px] mt-3">HOURS</span>
-                </div>
-                <div className="mx-5 text-xl text-zinc-500 relative -top-3.5">
-                  :
-                </div>
-                <div className="flex justify-start items-center flex-col">
-                  <div className=" flex justify-start items-center">
-                    <span className="text-2xl">14</span>{" "}
-                  </div>
-                  <span className="text-zinc-400 text-[8px] mt-3">MINUTES</span>
-                </div>
-                <div className="mx-5 text-xl text-zinc-500 relative -top-3.5">
-                  :
-                </div>
-                <div className="flex justify-start items-center flex-col">
-                  <div className=" flex justify-start items-center">
-                    <span className="text-2xl">14</span>{" "}
-                  </div>
-                  <span className="text-zinc-400 text-[8px] mt-3">SECONDS</span>
+                  {time && timer !== -1 && (
+                    <Countdown date={Date.now() + timer} renderer={renderer} />
+                  )}
                 </div>
               </div>
-            </div>
+            )}
+            ,
             <div className="flex justify-start items-start flex-col">
               <Discussion state={discussion} setState={setDiscussion} />
               <div className="w-full my-3 h-[1px] border-dashed border-[1px] border-slate-700 hidden sm:inline-block"></div>

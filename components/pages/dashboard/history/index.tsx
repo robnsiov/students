@@ -33,26 +33,30 @@ const History = () => {
               {activeData === null && "There is no data to display."}
               {activeData !== null && (
                 <code>
-                  <p>
+                  <span>
                     Discussion: {activeData.discussion.res} , delay :{" "}
                     {activeData.discussion.delay.toString()} minute(s)
-                  </p>
-                  <p>
+                  </span>
+                  <br />
+                  <span>
                     Exercise books: {activeData.exerciseBooks.res} , not done :{" "}
                     {activeData.exerciseBooks.notDone.toString()}
-                  </p>
-                  <p>
+                  </span>
+                  <br />
+                  <span>
                     Fine : {activeData.fine.res} , remains :{" "}
                     {activeData.fine.remains.toString()}
-                  </p>
-                  <p>
+                  </span>
+                  <br />
+                  <span>
                     Penalty : {activeData.penalty.res} , not done :{" "}
                     {activeData.penalty.remains.toString()}
-                  </p>
-                  <p>
+                  </span>
+                  <br />
+                  <span>
                     Books: not done : {activeData.books.notDone.toString()} ,
                     not with me : {activeData.books.notWithMe.toString()}
-                  </p>
+                  </span>
                 </code>
               )}
             </AlertDialogDescription>

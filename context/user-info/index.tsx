@@ -1,6 +1,6 @@
 import { atom } from "recoil";
 
-const UserInfoState = atom<{ phone?: String; name?: String }>({
+const UserInfoState = atom<{ phone?: string; name?: string }>({
   key: "userInfoState",
   default: {},
 });

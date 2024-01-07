@@ -16,6 +16,8 @@ import { AxiosError } from "axios";
 const useDashboard = () => {
   const { toast } = useToast();
 
+  const [time, setTime] = useState<{ current: Date; max: Date }>();
+  const [timer, setTimer] = useState(-1);
   const [auth] = useRecoilState(authState);
   const [taskConfirmationErr, setTaskConfirmationErr] = useState<
     null | string
@@ -46,6 +48,39 @@ const useDashboard = () => {
     notWithMe: 0,
   });
 
+  const timeQueryFn = () => {
+    return Axios<{
+      result: { current: Date; max: Date };
+    }>({
+      method: "GET",
+      url: "/task/remains",
+    });
+  };
+  const { data: dataTime, refetch: timeRefetch } = useQuery({
+    queryKey: ["time"],
+    queryFn: timeQueryFn,
+    enabled: false,
+    retry: 0,
+  });
+
+  useEffect(() => {
+    if (time) {
+      let timer = 0;
+      if (time) {
+        timer =
+          new Date(time?.max).getTime() - new Date(time?.current).getTime();
+      }
+      if (timer <= 0) timer = 0;
+      setTimer(timer);
+    }
+  }, [time]);
+
+  useEffect(() => {
+    if (dataTime) {
+      setTime(dataTime.data.result);
+    }
+  }, [dataTime]);
+
   const taskConfirmationQueryFn = () => {
     return Axios<{
       result: { result: string };
@@ -60,9 +95,11 @@ const useDashboard = () => {
     enabled: false,
     retry: 0,
   });
+
   useEffect(() => {
     if (auth === "authenticated") {
       refetch();
+      timeRefetch();
     }
   }, [auth]);
 
@@ -106,6 +143,9 @@ const useDashboard = () => {
     },
     onSettled() {
       setFormLoading(false);
+      setTimeout(() => {
+        refetch();
+      }, 2500);
     },
     onMutate() {
       setOpenDialog(false);
@@ -170,6 +210,9 @@ const useDashboard = () => {
     onContinueDialog,
     formLoading,
     taskConfirmationErr,
+    time,
+    timer,
+    refetch,
   };
 };
 export default useDashboard;
